@@ -22,4 +22,4 @@ def profile(request,username):
 
     else:
         form = profileform()
-    return render(request, 'profile.html', {"form": form})
+    return render(request, 'profile.html', {"form": form,'profile':profile})

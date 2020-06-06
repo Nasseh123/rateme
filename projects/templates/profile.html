@@ -14,6 +14,23 @@
 {%endblock%}
 {% block content %}
 {{block.super}}
+{{profile.profile_pic.url}}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{profile.profile_pic.url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
 <!-- Trigger/Open The Modal -->
 <button id="myBtn">Open Modal</button>
 
@@ -46,17 +63,10 @@
 
 <div class="row">
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    <img src="{{profile.profile_pic.url}}" class="imgs" alt="">
+    <img src="" class="imgs" alt="">
     <h5>{{profile.bio}}</h5>
   </div>
-  <div class="card">
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {% bootstrap_form form%}
-      <input type="submit" class="btn btn-success btn-lg" value="Post">
-    </form>
-
-  </div>
+  
 
 </div>
 {%endblock%}
