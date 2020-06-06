@@ -10,9 +10,14 @@ class Profile(models.Model):
     phone_no=models.IntegerField(blank=True,null=True)
     gender=models.CharField(max_length=10,blank=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE,)
+    pub_date=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user.username 
+    @classmethod
+    def get_profile(cls,username):
+        userd=cls.objects.get(user=username)
+        return userd
         
 @receiver(post_save,sender=User)
 def create_user_profile(sender,instance,created,**kwargs):

@@ -1,0 +1,20 @@
+
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+{{block.super}}
+
+ <div class="">
+    <img src="{{profile.profile_pic.url}}"  class="imgs" alt=""> <h5>{{profile.bio}}</h5>
+  </div>
+  <div class="card">
+    <form method = "post" enctype="multipart/form-data"> 
+      {% csrf_token %} 
+      {% bootstrap_form form%}
+      <input type="submit" class="btn btn-success btn-lg" value="Post"> 
+  </form> 
+
+  </div>
+    
+ 
+{% endblock %}
