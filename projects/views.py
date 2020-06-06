@@ -4,7 +4,7 @@ from .models import Profile,webapps
 # Create your views here.
 def index(request):
     latestprojects=webapps.getlatest()
-    return render(request,'index.html')
+    return render(request,'index.html',{'latestprojects':latestprojects})
 
 def site(request,userid):
     
