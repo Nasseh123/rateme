@@ -190,6 +190,59 @@
       flex-direction: column;
     }
   }
+/* ***************NEWSLETTER************ */
+.mainnewsletter{
+  background-color: rgb(224, 208, 222);
+}
+.newsletter{
+  font-family: 'Metal Mania', cursive;
+  text-align: center;
+  font-size: 65px;
   
+}
+
+  .notification{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .boxnewsletter{
+    padding: 80px 0;
+    
+    background: transparent;
+    border: 3px solid black;
+    }
+    
+    .newsletter .content {
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2; }
+    .newsletter .content h2 {
+    color: #243c4f;
+    margin-bottom: 40px; }
+    .newsletter .content .form-control {
+    height: 50px;
+    border-color: #ffffff;
+    border-radius:0;
+    }
+    .newsletter .content.form-control:focus {
+    box-shadow: none;
+    border: 2px solid #243c4f;
+    }
+    .newsletter .content .btn {
+    min-height: 50px; 
+    border-radius:0;
+    background: #243c4f;
+    color: #fff;
+    font-weight:600;
+    }
+
+    /* FOOOTER */
+  .foot{
+    text-align: center;
+  }
   
   
