@@ -1,0 +1,33 @@
+.top{
+    background: url('media/mainsitepic.jpg.url');
+
+    /* Other styling... */
+    border: black solid;
+    border-radius: 50px;
+    height: 350px;
+}
+.results{
+    align-items: center;
+    align-content: center;
+    margin-right:15px;
+    display: flex;
+    margin-left: 35%;
+    
+}
+
+  .screenshot{
+    box-sizing: border-box;
+  }
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+
+  }
+  
+  /* Clearfix (clear floats) */
+  .rowd::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

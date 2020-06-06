@@ -4,3 +4,6 @@ from django.shortcuts import render
 def index(request):
 
     return render(request,'index.html')
+
+def site(request):
+    return render(request,'site.html')

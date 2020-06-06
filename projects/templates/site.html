@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block content %}
+{{block.super}}
+<div class="top" style="background-image: image(main)">
+    <img src="" alt="" >
+    </div>
+    <div class="results" >
+        <p >DESIGN:20%</p>
+        <p>USABILITY:40%</p>
+        <p>CONTENT:60%</p>
+        <p>CREATIVITY:80%</p>
+    </div>
+    <!--*********** SCREENSHOTS********** -->
+    <div class="screenshots">
+        <div class="rowd">
+            <div class="column">
+              <img src="media/mainsitepic.jpg" alt="Snow" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="img_forest.jpg" alt="Forest" style="width:100%">
+            </div>
+            <div class="column">
+              <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+            </div>
+          </div>
+    </div>
+{% endblock %}
