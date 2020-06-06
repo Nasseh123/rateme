@@ -3,10 +3,10 @@ from .forms import profileform,webappsform
 from .models import Profile,webapps
 # Create your views here.
 def index(request):
-
+    latestprojects=webapps.getlatest()
     return render(request,'index.html')
 
-def site(request):
+def site(request,userid):
     
     return render(request,'site.html')
 
