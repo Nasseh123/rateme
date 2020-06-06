@@ -28,3 +28,16 @@ def create_user_profile(sender,instance,created,**kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+class webapps(models.Model):
+    title=models.TextField()
+    main_picture=models.ImageField(upload_to='webapps/',default='media/webapps/internet.png')
+    screenshot1=models.ImageField(upload_to='webapps/',blank=True,default='media/webapps/internet.png')
+    screenshot2=models.ImageField(upload_to='webapps/',blank=True,default='media/webapps/internet.png')
+    link=models.TextField()
+    description=models.CharField(max_length=200)
+    profile=models.ForeignKey(Profile,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
