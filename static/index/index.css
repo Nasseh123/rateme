@@ -135,6 +135,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding-top: 50px;
     
   }
   
@@ -154,13 +155,15 @@
     width: inherit;
     height: inherit;
     border-radius: 40px;
+    
   }
   
   .card .card_image img {
     width: inherit;
     height: inherit;
     border-radius: 40px;
-    object-fit: cover;
+    object-fit: inherit;
+
   }
   
   .card .card_title {

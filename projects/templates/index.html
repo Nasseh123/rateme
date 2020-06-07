@@ -27,46 +27,20 @@
 <p class="latest_projects">LATEST PROJECTS...</p>
 
 <div class="cards-list">
-
+  {%for latest in latestprojects %}
   <div class="card 1">
-    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-    <div class="card_title title-white">
-      <p>Card Title</p>
+    <div class="card_title title-black">
+      <p>{{latest.title|upper}}</p>
     </div>
+    <div class="card_image">
+      <img  src="{{latest.main_picture.url}}" > 
+      <a href="{% url 'site' userid=latest.user.id%}">Rate this site!</a> </div>
+    <!-- https://i.redd.it/b3esnz5ra34y.jpg -->
+    
   </div>
 
 
-  <div class="card 1">
-    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-    <div class="card_title title-white">
-      <p>Card Title</p>
-    </div>
-  </div>
-
-  <div class="card 1">
-    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-    <div class="card_title title-white">
-      <p>Card Title</p>
-    </div>
-  </div>
-  <div class="card 1">
-    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-    <div class="card_title title-white">
-      <p>Card Title</p>
-    </div>
-  </div>
-  <div class="card 1">
-    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-    <div class="card_title title-white">
-      <p>Card Title</p>
-    </div>
-  </div>
-  <div class="card 1">
-    <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-    <div class="card_title title-white">
-      <p>Card Title</p>
-    </div>
-  </div>
+  {% endfor %} 
 </div>
 
 

@@ -43,14 +43,14 @@ class webapps(models.Model):
     def __str__(self):
         return self.title
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['-pub_date']
 
     @classmethod
     def get_all(cls):
         webapp=cls.objects.all()
-        print webapp
+        print (webapp)
 
     @classmethod
     def getlatest(cls):
-        latestprojects=cls.objects.all()
-        print(latestprojects)
+        latestprojects=cls.objects.all()[:6]
+        return latestprojects
