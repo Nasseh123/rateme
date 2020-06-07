@@ -64,6 +64,7 @@ class webapps(models.Model):
 
 class ratings(models.Model):
     RATE=[
+        (0,0),
         (1,1),
         (2,2),
         (3,3),
@@ -82,5 +83,5 @@ class ratings(models.Model):
     webapp=models.ForeignKey(webapps,on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
-    
+
     

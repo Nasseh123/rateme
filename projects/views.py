@@ -1,14 +1,28 @@
 from django.shortcuts import render,redirect
-from .forms import profileform,webappsform
-from .models import Profile,webapps
+from .forms import profileform,webappsform,ratingsform
+from .models import Profile,webapps,ratings
 # Create your views here.
 def index(request):
     latestprojects=webapps.getlatest()
     return render(request,'index.html',{'latestprojects':latestprojects})
 
 def site(request,webapp_id):
+    currentuser=request.user
+    
     projects=webapps.getspecificproject(webapp_id)
-    return render(request,'site.html',{'projects':projects})
+    
+    if request.method== 'POST':
+        form=ratingsform(request.POST)
+        
+        if form.is_valid():
+            rating=form.save(commit=False)
+            rating.user=currentuser
+            rating.webapp=webapp_id
+            rating.save()
+        return redirect('site' ,webapp_id=webapp_id)
+    else:
+        form=ratingsform()
+    return render(request,'site.html',{'projects':projects,'form':form})
 
 def profile(request,username):
     current_user = request.user
