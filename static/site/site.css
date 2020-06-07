@@ -22,6 +22,7 @@
 
   .screenshot{
     box-sizing: border-box;
+    align-items: center;
   }
   .column {
     float: left;
@@ -50,4 +51,9 @@
   }
   .descal{
     margin-left: 20px;
+  }
+  #scrc{
+    text-align: center;
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 60px;
   }

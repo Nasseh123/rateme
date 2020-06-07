@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 # Create your models here.
 
 class Profile(models.Model):
@@ -59,3 +60,27 @@ class webapps(models.Model):
     def getspecificproject(cls,webapp_id):
         specificprojects=cls.objects.get(id=webapp_id)
         return specificprojects
+
+
+class ratings(models.Model):
+    RATE=[
+        (1,1),
+        (2,2),
+        (3,3),
+        (4,4),
+        (5,5),
+        (6,6),
+        (7,7),
+        (8,8),
+        (9,9),
+        (10,10),
+    ]
+    rate_by_design=models.IntegerField(choices=RATE,default=0,)
+    rate_by_usability=models.IntegerField(choices=RATE,default=0,)
+    rate_by_content=models.IntegerField(choices=RATE,default=0,)
+    rate_by_creativity=models.IntegerField(choices=RATE,default=0,)
+    webapp=models.ForeignKey(webapps,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    
+    
