@@ -41,6 +41,7 @@
   <p>CREATIVITY:80%</p>
 </div>
 <button id="myBtn">RATE THIS SITE</button>
+<a href="#myBtn">RATE THIS SITE</a>
 <!-- ***************DESCRIPTION AND LIVE LINK******************** -->
 <div class="row">
   <div class="col-sm-12">
@@ -73,7 +74,7 @@
     </div>
   </div>
 <!-- Trigger/Open The Modal -->
-<button id="myBtn">RATE THIS SITE</button>
+<button id="myBtn" class>RATE THIS SITE</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -124,8 +125,32 @@
       </div>
     </div>
   </div>
-</div>
 
+<!-- *********************************COMMENTS******************* -->
+
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body descal">
+        <h5 class="card-title descheader">COMMENTS</h5>
+        
+        {%for rate in rates%}
+        <ul>
+          
+          <li>DESIGN--{{rate.rate_by_design}}</li>
+          <li>USABILITY--{{rate.rate_by_usability}}</li>
+          <li>CONTENT--{{rate.rate_by_content}}</li>
+          <li>CREATIVITY--{{rate.rate_by_creativity}}</li>
+          
+        </ul>
+        {%endfor%}
+        <p class="card-text">------</p>
+       
+       
+      </div>
+    </div>
+  
+  </div>
+</div>
 {% endblock %}
 {%block scripts%}
 <script>
