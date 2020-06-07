@@ -101,10 +101,30 @@
 
 </div>
 
-
-
+<!-- **************************JUDGES************8 -->
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body descal">
+        <h5 class="card-title descheader">REVIEWS</h5>
+        <h3 class="desc">Description...</h3>
+        {%for rate in rates%}
+        <ul>
+          
+          <li>DESIGN--{{rate.rate_by_design}}</li>
+          <li>USABILITY--{{rate.rate_by_usability}}</li>
+          <li>CONTENT--{{rate.rate_by_content}}</li>
+          <li>CREATIVITY--{{rate.rate_by_creativity}}</li>
+          
+        </ul>
+        {%endfor%}
+        <p class="card-text">------</p>
+       
+       
+      </div>
+    </div>
+  </div>
 </div>
-
 
 {% endblock %}
 {%block scripts%}

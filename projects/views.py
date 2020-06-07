@@ -21,12 +21,13 @@ def site(request,webapp_id):
             rating.user_id=currentuser.id
             rating.webapp_id=webapp_id
             rating.save()
-            message='unsuccesful'
+            message='succesful rated!'
         return redirect('site' ,webapp_id=webapp_id)
     else:
         message='unsuccesful'
         form=ratingsform()
-    return render(request,'site.html',{'projects':projects,'form':form})
+    rates=ratings.getall(webapp_id)
+    return render(request,'site.html',{'projects':projects,'form':form,'rates':rates})
 
 def profile(request,username):
     current_user = request.user

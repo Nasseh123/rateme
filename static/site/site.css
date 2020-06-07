@@ -57,3 +57,6 @@
     font-family: 'ZCOOL XiaoWei', serif;
     font-size: 60px;
   }
+  ul li{
+    display: inline;
+  }

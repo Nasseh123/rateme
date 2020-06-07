@@ -85,10 +85,13 @@ class ratings(models.Model):
 
 
     @classmethod
-    def getinstance(cls,projects):
-        webaaps=cls.objects.filter(webapp=projects).first()
+    def getinstance(cls,webapp_id):
+        webaaps=cls.objects.filter(webapp=webapp_id).first()
         return webaaps
 
-
+    @classmethod
+    def getall(cls,webapp_id):
+        weball=cls.objects.filter(webapp=webapp_id)
+        return weball
 
     
