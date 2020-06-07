@@ -46,6 +46,7 @@ img {
 .cards {
   display: flex;
   flex-wrap: wrap;
+  
   list-style: none;
   margin: 0;
   padding: 0;
@@ -81,12 +82,21 @@ img {
   flex: 1 1 auto;
   flex-direction: column;
   padding: 1rem;
+  height: 400px;
 }
-
+#rcorners3 {
+  border-radius: 50px;
+  border:  black solid;
+  display: flex;
+  width: 50px;
+  height: 100px; 
+  text-align: center; 
+}
 .card__image {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 180px;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   filter: contrast(70%);

@@ -6,8 +6,8 @@ def index(request):
     latestprojects=webapps.getlatest()
     return render(request,'index.html',{'latestprojects':latestprojects})
 
-def site(request,userid):
-    projects=webapps.getspecificproject(userid)
+def site(request,webapp_id):
+    projects=webapps.getspecificproject(webapp_id)
     return render(request,'site.html',{'projects':projects})
 
 def profile(request,username):

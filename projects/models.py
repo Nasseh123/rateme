@@ -56,6 +56,6 @@ class webapps(models.Model):
         latestprojects=cls.objects.all()[:6]
         return latestprojects
     @classmethod
-    def getspecificproject(cls,userid):
-        specificprojects=cls.objects.get(user=userid)
+    def getspecificproject(cls,webapp_id):
+        specificprojects=cls.objects.get(id=webapp_id)
         return specificprojects
