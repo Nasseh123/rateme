@@ -11,17 +11,33 @@
   <p>CONTENT:60%</p>
   <p>CREATIVITY:80%</p>
 </div>
+
+<!-- ***************DESCRIPTION AND LIVE LINK******************** -->\
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body descal">
+        <h5 class="card-title descheader">{{projects.title.upper}}</h5>
+        <h3 class="desc">Description...</h3>
+        <p class="card-text">>>{{projects.description}}</p>
+        <a href="{{projects.link}}" target="blank" class="btn btn-primary">LIVE LINK</a>
+      </div>
+    </div>
+  </div>
 <!--*********** SCREENSHOTS********** -->
 <div class="screenshots">
-  <div class="rowd">
-    <div class="column">
+  <div class="row">
+    <div class="col-md-4">
       <img src="{{projects.screenshot1.url}}" alt="Snow" style="width:100%"  height="350px">
-    </div>
-    <div class="column">
-      <img src="{{projects.screenshot2.url}}" alt="Forest" style="width:100%"  height="350px">
-    </div>
-    <div class="column">
+  </div>
+  <div class="col-md-4">
+    <img src="{{projects.screenshot2.url}}" alt="Forest" style="width:100%"  height="350px">
+  </div>
+     <div class="col-md-4">
       <img src="{{projects.screenshot3.url}}" alt="Mountains" style="width:100%" height="350px">
+     </div>
+  
+     
     </div>
   </div>
 </div>

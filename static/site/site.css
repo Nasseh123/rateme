@@ -36,3 +36,18 @@
     clear: both;
     display: table;
   }
+
+  .descheader{
+    text-align: center;
+    font-weight: 800  ;
+    font-size: 80px;
+    font-family: 'ZCOOL XiaoWei', serif;
+  }
+  .desc{
+    font-family: 'Special Elite', cursive;
+    text-underline-position: below  ;
+    
+  }
+  .descal{
+    margin-left: 20px;
+  }
