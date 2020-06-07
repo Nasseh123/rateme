@@ -84,4 +84,11 @@ class ratings(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
 
+    @classmethod
+    def getinstance(cls,projects):
+        webaaps=cls.objects.filter(webapp=projects).first()
+        return webaaps
+
+
+
     

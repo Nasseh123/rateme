@@ -10,17 +10,21 @@ def site(request,webapp_id):
     currentuser=request.user
     
     projects=webapps.getspecificproject(webapp_id)
-    
+    print(projects.id)
+    rateinstance=ratings.getinstance(projects.id)
+    print(rateinstance)
     if request.method== 'POST':
-        form=ratingsform(request.POST)
+        form=ratingsform(request.POST,instance=rateinstance)
         
         if form.is_valid():
             rating=form.save(commit=False)
-            rating.user=currentuser
-            rating.webapp=webapp_id
+            rating.user_id=currentuser.id
+            rating.webapp_id=webapp_id
             rating.save()
+            message='unsuccesful'
         return redirect('site' ,webapp_id=webapp_id)
     else:
+        message='unsuccesful'
         form=ratingsform()
     return render(request,'site.html',{'projects':projects,'form':form})
 
