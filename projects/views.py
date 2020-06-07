@@ -7,8 +7,8 @@ def index(request):
     return render(request,'index.html',{'latestprojects':latestprojects})
 
 def site(request,userid):
-    
-    return render(request,'site.html')
+    projects=webapps.getspecificproject(userid)
+    return render(request,'site.html',{'projects':projects})
 
 def profile(request,username):
     current_user = request.user

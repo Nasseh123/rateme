@@ -1,11 +1,4 @@
-.top{
-    background: url('media/mainsitepic.jpg.url');
 
-    /* Other styling... */
-    border: black solid;
-    border-radius: 50px;
-    height: 350px;
-}
 .results{
     align-items: center;
     align-content: center;

@@ -31,9 +31,10 @@ def save_user_profile(sender, instance, **kwargs):
 
 class webapps(models.Model):
     title=models.CharField(max_length=100)
-    main_picture=models.ImageField(upload_to='webapps/',default='media/webapps/internet.png')
-    screenshot1=models.ImageField(upload_to='webapps/',blank=True,default='media/webapps/internet.png')
-    screenshot2=models.ImageField(upload_to='webapps/',blank=True,default='media/webapps/internet.png')
+    main_picture=models.ImageField(upload_to='webapps/',default='webapps/internet.png')
+    screenshot1=models.ImageField(upload_to='webapps/',blank=True,default='webapps/internet.png')
+    screenshot2=models.ImageField(upload_to='webapps/',blank=True,default='webapps/internet.png')
+    screenshot3=models.ImageField(upload_to='webapps/',blank=True,default='webapps/internet.png')
     link=models.CharField(max_length=200)
     description=models.TextField()
     profile=models.ForeignKey(Profile,on_delete=models.CASCADE)
@@ -48,9 +49,13 @@ class webapps(models.Model):
     @classmethod
     def get_all(cls):
         webapp=cls.objects.all()
-        print (webapp)
+        return webapp
 
     @classmethod
     def getlatest(cls):
         latestprojects=cls.objects.all()[:6]
         return latestprojects
+    @classmethod
+    def getspecificproject(cls,userid):
+        specificprojects=cls.objects.get(user=userid)
+        return specificprojects
