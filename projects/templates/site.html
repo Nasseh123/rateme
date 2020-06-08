@@ -40,8 +40,8 @@
   <p>CONTENT:60%</p>
   <p>CREATIVITY:80%</p>
 </div>
-<button id="myBtn">RATE THIS SITE</button>
-<a href="#myBtn">RATE THIS SITE</a>
+<!-- <button id="myBtn">RATE THIS SITE</button> -->
+<a href="#myBtn" aria-valuetext="Ratings">RATE THIS SITE</a>
 <!-- ***************DESCRIPTION AND LIVE LINK******************** -->
 <div class="row">
   <div class="col-sm-12">
@@ -74,7 +74,7 @@
     </div>
   </div>
 <!-- Trigger/Open The Modal -->
-<button id="myBtn" class>RATE THIS SITE</button>
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -108,21 +108,24 @@
     <div class="card">
       <div class="card-body descal">
         <h5 class="card-title descheader">REVIEWS</h5>
-        <h3 class="desc">Description...</h3>
+        <h3 class="desc">RATINGS...</h3>
+        <p>AVERAGE RATINGS--{{av}}</p>
         {%for rate in rates%}
-        <ul>
+       
+        <ol>
           
-          <li>DESIGN--{{rate.rate_by_design}}</li>
-          <li>USABILITY--{{rate.rate_by_usability}}</li>
-          <li>CONTENT--{{rate.rate_by_content}}</li>
-          <li>CREATIVITY--{{rate.rate_by_creativity}}</li>
+          <li>{{rate.user.username}}---DESIGN--{{rate.rate_by_design}} USABILITY--{{rate.rate_by_usability}}CONTENT--{{rate.rate_by_content}}CREATIVITY--{{rate.rate_by_creativity}}</li>
           
-        </ul>
+          
+        </ol>
         {%endfor%}
+        
         <p class="card-text">------</p>
        
        
       </div>
+      <button id="myBtn" class="btn btn-danger" type="button">RATE THIS SITE</button>
+
     </div>
   </div>
 
@@ -134,14 +137,16 @@
         <h5 class="card-title descheader">COMMENTS</h5>
         
         {%for rate in rates%}
+       
         <ul>
           
-          <li>DESIGN--{{rate.rate_by_design}}</li>
+          <li>DESIGN--{{rate.rate_by_design}}---</li>
           <li>USABILITY--{{rate.rate_by_usability}}</li>
           <li>CONTENT--{{rate.rate_by_content}}</li>
           <li>CREATIVITY--{{rate.rate_by_creativity}}</li>
-          
+         
         </ul>
+        
         {%endfor%}
         <p class="card-text">------</p>
        

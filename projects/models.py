@@ -93,5 +93,22 @@ class ratings(models.Model):
     def getall(cls,webapp_id):
         weball=cls.objects.filter(webapp=webapp_id)
         return weball
-
-    
+    @classmethod
+    def getuserrating(cls,currentuser):
+        user=cls.objects.filter(user__in=currentuser)
+        return user
+    @classmethod
+    def averageOfuser(cls,userratedarray,webappid):
+    # sumOfNumbers=0
+        num=cls.objects.filter(user__in=userratedarray,webapp=webappid).all()
+        numsums=[]
+        for no in num:
+            numsum=no.rate_by_design+no.rate_by_usability+no.rate_by_content+no.rate_by_creativity
+            numsums.append(numsum)
+        return sum(numsums)
+        
+        # #####################333
+        # for t in num:
+        #     sumOfNumbers = sumOfNumbers + t
+        # avg = sumOfNumbers / len(num)
+        # return avg

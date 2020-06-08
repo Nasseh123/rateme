@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .forms import profileform,webappsform,ratingsform
 from .models import Profile,webapps,ratings
 # Create your views here.
@@ -10,30 +10,46 @@ def site(request,webapp_id):
     currentuser=request.user
     
     projects=webapps.getspecificproject(webapp_id)
-    print(projects.id)
+    # print(projects.id)
     rateinstance=ratings.getinstance(projects.id)
-    print(rateinstance)
+    # print(rateinstance)
     if request.method== 'POST':
         form=ratingsform(request.POST,instance=rateinstance)
         
         if form.is_valid():
-            rating=form.save(commit=False)
-            rating.user_id=currentuser.id
-            rating.webapp_id=webapp_id
-            rating.save()
-            message='succesful rated!'
-        return redirect('site' ,webapp_id=webapp_id)
+            rat=ratings.getuserrating(currentuser)
+            if rat:
+                rating=form.save(commit=False)
+                rating.user_id=currentuser.id
+                rating.webapp_id=webapp_id
+                rating.save()
+                message='Thanks for updating your ratings!'
+                return redirect('site' ,webapp_id=webapp_id)
+            else:
+                rating=form.save(commit=False)
+                rating.user_id=currentuser.id
+                rating.webapp_id=webapp_id
+                rating.save()
+                message='Thanks for your ratings!'
+            return redirect('site' ,webapp_id=webapp_id)
     else:
-        message='unsuccesful'
         form=ratingsform()
     rates=ratings.getall(webapp_id)
-    return render(request,'site.html',{'projects':projects,'form':form,'rates':rates})
+    # print(rates)
+    userratedarray=[]
+    for rated in rates:
+        userratedarray.append(rated.user.id)
+        # print(rated.user.id)
+    
+    av=ratings.averageOfuser(userratedarray,webapp_id)
+    print (av)
+    return render(request,'site.html',{'projects':projects,'form':form,'rates':rates,'av':av})
 
 def profile(request,username):
     current_user = request.user
     user_id=current_user.id
     profile=Profile.get_profile(username)
-    print(profile)
+    # print(profile)
     if request.method == 'POST':
         form = profileform(request.POST, request.FILES,instance=profile)
         if form.is_valid():
@@ -49,7 +65,7 @@ def search_all_projects(request):
 
     current_user = request.user
     user_id=current_user.id
-    print(profile)
+    # print(profile)
     allwebapps=webapps.get_all()
     if request.method == 'POST':
         form = webappsform(request.POST, request.FILES)
