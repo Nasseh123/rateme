@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
-from .forms import profileform,webappsform,ratingsform
-from .models import Profile,webapps,ratings
+from .forms import profileform,webappsform,ratingsform,commentform
+from .models import Profile,webapps,ratings,comment
 # Create your views here.
 def index(request):
     latestprojects=webapps.getlatest()
@@ -15,7 +15,7 @@ def site(request,webapp_id):
     # print(rateinstance)
     if request.method== 'POST':
         form=ratingsform(request.POST,instance=rateinstance)
-        
+        commentformd=commentform(request.POST)
         if form.is_valid():
             rat=ratings.getuserrating(currentuser.id)
             if rat:
@@ -33,8 +33,17 @@ def site(request,webapp_id):
                 rating.save()
                 message='Thanks for your ratings!'
             return redirect('site' ,webapp_id=webapp_id)
+
+        elif commentformd.is_valid():
+            commented=commentformd.save(commit=False)
+            commented.webapp_id=webapp_id
+            commented.user_id=currentuser.id
+            commented.save()
+            return redirect('site' ,webapp_id=webapp_id)
+
     else:
         form=ratingsform()
+        commentformd=commentform()
     rates=ratings.getall(webapp_id)
     # print(rates)
     userratedarray=[]
@@ -44,7 +53,9 @@ def site(request,webapp_id):
     
     av=ratings.averageOfuser(userratedarray,webapp_id)
     print (av)
-    return render(request,'site.html',{'projects':projects,'form':form,'rates':rates,'av':av})
+
+    comments=comment.get_all(webapp_id)
+    return render(request,'site.html',{'projects':projects,'form':form,'commentform':commentformd,'rates':rates,'av':av,'comments':comments})
 
 def profile(request,username):
     current_user = request.user

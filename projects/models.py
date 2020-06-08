@@ -116,3 +116,13 @@ class ratings(models.Model):
         #     sumOfNumbers = sumOfNumbers + t
         # avg = sumOfNumbers / len(num)
         # return avg
+
+class comment(models.Model):
+    comment=models.CharField(max_length=80,blank=True)
+    webapp=models.ForeignKey(webapps,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+
+    @classmethod
+    def get_all(cls,webapp_id):
+        comments=cls.objects.filter(webapp=webapp_id)
+        return comments

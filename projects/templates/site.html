@@ -141,19 +141,22 @@
       <div class="card-body descal">
         <h5 class="card-title descheader">COMMENTS</h5>
         
-        {%for rate in rates%}
+        {%for comment in comments%}
        
         <ul>
           
-          <li>DESIGN--{{rate.rate_by_design}}---</li>
-          <li>USABILITY--{{rate.rate_by_usability}}</li>
-          <li>CONTENT--{{rate.rate_by_content}}</li>
-          <li>CREATIVITY--{{rate.rate_by_creativity}}</li>
+          <li>DESIGN--{{comment.comment}}---</li>
+          
          
         </ul>
         
         {%endfor%}
-        <p class="card-text">------</p>
+        <p class="card-text">
+           <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% bootstrap_form commentform%}
+          <input type="submit" class="btn btn-success btn-lg" value="COMMENT">
+        </form></p>
        
        
       </div>
