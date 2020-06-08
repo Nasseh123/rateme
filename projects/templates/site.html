@@ -109,9 +109,14 @@
       <div class="card-body descal">
         <h5 class="card-title descheader">REVIEWS</h5>
         <h3 class="desc">RATINGS...</h3>
-        <p>AVERAGE RATINGS--{{av}}</p>
+        {%if av%}
+
+        <p >AVERAGE RATINGS--{{av}}%<span title="The criteria used for calculating the average rating is..((TOTAL OF ALL THE RATINGS *100)/number of people who rated)">&#63;</span></p>
+        {%else%}
+        <p>NO Ratings yet!</p>
+        {%endif%}
         {%for rate in rates%}
-       
+        
         <ol>
           
           <li>{{rate.user.username}}---DESIGN--{{rate.rate_by_design}} USABILITY--{{rate.rate_by_usability}}CONTENT--{{rate.rate_by_content}}CREATIVITY--{{rate.rate_by_creativity}}</li>

@@ -17,7 +17,7 @@ def site(request,webapp_id):
         form=ratingsform(request.POST,instance=rateinstance)
         
         if form.is_valid():
-            rat=ratings.getuserrating(currentuser)
+            rat=ratings.getuserrating(currentuser.id)
             if rat:
                 rating=form.save(commit=False)
                 rating.user_id=currentuser.id
