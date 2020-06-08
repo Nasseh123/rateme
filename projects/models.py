@@ -80,9 +80,15 @@ class ratings(models.Model):
     rate_by_usability=models.IntegerField(choices=RATE,default=0,)
     rate_by_content=models.IntegerField(choices=RATE,default=0,)
     rate_by_creativity=models.IntegerField(choices=RATE,default=0,)
-    webapp=models.ForeignKey(webapps,on_delete=models.CASCADE)
+    average= models.IntegerField(default=0,)
+    webapp=models.OneToOneField(webapps,on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.username
+    def avg(self):
+        print(self.rate_by_creativity+self.rate_by_design)
+        return (self.rate_by_creativity+self.rate_by_design)/2
 
     @classmethod
     def getinstance(cls,webapp_id):
@@ -110,13 +116,11 @@ class ratings(models.Model):
         percentagevalue=((sum(numsums)*100))/lengthofratings
                        
         return percentagevalue
-        
-        # #####################333
-        # for t in num:
-        #     sumOfNumbers = sumOfNumbers + t
-        # avg = sumOfNumbers / len(num)
-        # return avg
-
+    @ classmethod
+    def average(cls,webapp_id):
+        print(webapp_id)
+        av=cls.objects.filter(webapp=webapp_id).first()
+        return av
 class comment(models.Model):
     comment=models.CharField(max_length=80,blank=True)
     webapp=models.ForeignKey(webapps,on_delete=models.CASCADE)

@@ -115,15 +115,16 @@
         {%else%}
         <p>NO Ratings yet!</p>
         {%endif%}
-        {%for rate in rates%}
+        
         
         <ol>
-          
+          {%for rate in rates%}
+          {{rate.averageOfuser}}==
           <li>{{rate.user.username}}---DESIGN--{{rate.rate_by_design}} USABILITY--{{rate.rate_by_usability}}CONTENT--{{rate.rate_by_content}}CREATIVITY--{{rate.rate_by_creativity}}</li>
           
-          
+           {%endfor%}
         </ol>
-        {%endfor%}
+       
         
         <p class="card-text">------</p>
        
@@ -141,16 +142,16 @@
       <div class="card-body descal">
         <h5 class="card-title descheader">COMMENTS</h5>
         
-        {%for comment in comments%}
        
-        <ul>
-          
+       
+        <ol>
+          {%for comment in comments%}
           <li>DESIGN--{{comment.comment}}---</li>
           
-         
-        </ul>
+          {%endfor%}
+        </ol>
         
-        {%endfor%}
+        
         <p class="card-text">
            <form method="post" enctype="multipart/form-data">
           {% csrf_token %}

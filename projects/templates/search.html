@@ -31,10 +31,8 @@
                   <div class="card__title">{{allwebapp.title}}</div>
                   <p class="card__text">{{allwebapp.description}}</p>
 
-                  <p id="rcorners3">25%</p>
-                  <p id="rcorners3">25%</p>
-                  <p id="rcorners3">25%</p>
-                  <p id="rcorners3">25%</p>
+                  <p>AVERAGE RATINGS:{{allwebapp.ratings.avg}}<span id="rcorners3">25%</span></p>
+                  
                   <a href="{% url 'site' webapp_id=allwebapp.id %}" class="btn btn-info" role="button">Link Button</a>
                 </div>
               </div>

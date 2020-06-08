@@ -13,6 +13,17 @@ def site(request,webapp_id):
     # print(projects.id)
     rateinstance=ratings.getinstance(projects.id)
     # print(rateinstance)
+    rates=ratings.getall(webapp_id)
+    # print(rates)
+    userratedarray=[]
+    for rated in rates:
+        userratedarray.append(rated.user.id)
+        # print(rated.user.id)
+    
+    av=ratings.averageOfuser(userratedarray,webapp_id)
+    print (av)
+
+    comments=comment.get_all(webapp_id)
     if request.method== 'POST':
         form=ratingsform(request.POST,instance=rateinstance)
         commentformd=commentform(request.POST)
@@ -21,8 +32,10 @@ def site(request,webapp_id):
             if rat:
                 rating=form.save(commit=False)
                 rating.user_id=currentuser.id
-                rating.webapp_id=webapp_id
                 rating.save()
+                # avs=ratings.averageOfuser(userratedarray,webapp_id)
+                # average=ratings.objects.filter(webapp_id=webapp_id).update(average=avs)
+                
                 message='Thanks for updating your ratings!'
                 
                 return redirect('site' ,webapp_id=webapp_id)
@@ -39,22 +52,13 @@ def site(request,webapp_id):
             commented.webapp_id=webapp_id
             commented.user_id=currentuser.id
             commented.save()
+            
             return redirect('site' ,webapp_id=webapp_id)
 
     else:
         form=ratingsform()
         commentformd=commentform()
-    rates=ratings.getall(webapp_id)
-    # print(rates)
-    userratedarray=[]
-    for rated in rates:
-        userratedarray.append(rated.user.id)
-        # print(rated.user.id)
     
-    av=ratings.averageOfuser(userratedarray,webapp_id)
-    print (av)
-
-    comments=comment.get_all(webapp_id)
     return render(request,'site.html',{'projects':projects,'form':form,'commentform':commentformd,'rates':rates,'av':av,'comments':comments})
 
 def profile(request,username):
@@ -70,6 +74,8 @@ def profile(request,username):
 
     else:
         form = profileform()
+    
+
     return render(request, 'profile.html', {"form": form,'profile':profile})
 
 
@@ -87,5 +93,5 @@ def search_all_projects(request):
 
     else:
         form = profileform()
-   
+
     return render(request,'search.html',{"form": form,'allwebapps':allwebapps})
