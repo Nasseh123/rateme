@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render,redirect
 from .forms import profileform,webappsform,ratingsform
 from .models import Profile,webapps,ratings
 # Create your views here.
@@ -24,6 +24,7 @@ def site(request,webapp_id):
                 rating.webapp_id=webapp_id
                 rating.save()
                 message='Thanks for updating your ratings!'
+                
                 return redirect('site' ,webapp_id=webapp_id)
             else:
                 rating=form.save(commit=False)
