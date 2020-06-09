@@ -5,7 +5,7 @@ from .email import send_welcome_email
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import ProfileSerializer
+from .serializer import ProfileSerializer,WebappSerializer
 from rest_framework import status
 # Create your views here.
 def index(request):
@@ -125,3 +125,10 @@ class ProfileList(APIView):
     #         serializers.save()
     #         return Response(serializers.data, status=status.HTTP_201_CREATED)
     #     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ProjectsList(APIView):
+    def get(self, request, format=None):
+        all_profile = webapps.objects.all()
+        
+        serializers = WebappSerializer(all_profile, many=True)
+        return Response(serializers.data)

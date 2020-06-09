@@ -8,7 +8,8 @@ urlpatterns=[
     path('site/<webapp_id>',views.site,name='site'),
     path('profile/<username>',views.profile,name='profile'),
     path('all-projects/',views.search_all_projects,name='search_all_projects'),
-    path('api/profile/',views.ProfileList.as_view())
+    path('api/profile/',views.ProfileList.as_view(),name='profilelist'),
+    path('api/webapp/',views.ProjectsList.as_view(),name='projectlist')
 ]
 
 if settings.DEBUG:
