@@ -2,6 +2,11 @@ from django.shortcuts import render,redirect
 from .forms import profileform,webappsform,ratingsform,commentform,NewsLetterForm
 from .models import Profile,webapps,ratings,comment
 from .email import send_welcome_email
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer
+from rest_framework import status
 # Create your views here.
 def index(request):
     latestprojects=webapps.getlatest()
@@ -106,3 +111,17 @@ def search_all_projects(request):
         form = profileform()
 
     return render(request,'search.html',{"form": form,'allwebapps':allwebapps})
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profile = Profile.objects.all()
+        
+        serializers = ProfileSerializer(all_profile, many=True)
+        return Response(serializers.data)
+
+    # def post(self, request, format=None):
+    #     serializers = ProfileSerializer(data=request.data)
+    #     if serializers.is_valid():
+    #         serializers.save()
+    #         return Response(serializers.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)

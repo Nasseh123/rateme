@@ -14,7 +14,7 @@ class webappsform(forms.ModelForm):
 class ratingsform(forms.ModelForm):
     class Meta:
         model=ratings
-        exclude=['webapp','user']
+        exclude=['webapp','user','average']
     
 class commentform(forms.ModelForm):
     class Meta:

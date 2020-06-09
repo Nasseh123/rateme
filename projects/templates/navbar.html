@@ -30,22 +30,25 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Services</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#">Our Work</a>
+              <a class="btn btn-primary" href="{% url 'search_all_projects' %}">NEW WEBAPP/WEBSITE</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" href="{%url 'profile' user.id %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">logout</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
             </li>
+        
+            {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="btn btn-primary" href="/accounts/login">LOGIN</a>
             </li>
-            <li class="nav-item">
-              <a class="btn btn-primary" href="#">GET A QUOTE</a>
-            </li>
-
+            {%endif%}
           </ul>
 
         </div>

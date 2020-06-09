@@ -146,7 +146,7 @@
        
         <ol>
           {%for comment in comments%}
-          <li>DESIGN--{{comment.comment}}---</li>
+          <li>{{comment.user.username}}--{{comment.comment}}---</li>
           
           {%endfor%}
         </ol>
