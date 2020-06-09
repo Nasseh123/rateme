@@ -56,11 +56,12 @@
       <div class="content">
         <h2>SUBSCRIBE TO OUR NEWSLETTER</h2>
         <div class="form">
-          <input type="text" class="" placeholder="Enter your Name"><br>
-          <input type="email" class="" placeholder="Enter your email">
-          <span class="input-group-btn">
-            <button class="btn btn-dark" type="submit">Subscribe Now</button>
-          </span>
+          <form  action="{%url 'index'%}" method="post">
+            {%csrf_token%}
+        
+            {% bootstrap_form letterForm layout='inline' %}
+            <input type="submit" value="Subscribe">
+          </form>
         </div>
       </div>
     </div>

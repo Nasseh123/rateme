@@ -82,7 +82,7 @@ img {
   flex: 1 1 auto;
   flex-direction: column;
   padding: 1rem;
-  height: 200px;
+  height: 300px;
 }
 #rcorners3 {
   border-radius: 50px;

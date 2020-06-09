@@ -87,8 +87,11 @@ class ratings(models.Model):
     def __str__(self):
         return self.user.username
     def avg(self):
-        print(self.rate_by_creativity+self.rate_by_design)
-        return (self.rate_by_creativity+self.rate_by_design)/2
+       
+        print(self.rate_by_creativity)
+        aver=(self.rate_by_creativity+self.rate_by_design+self.rate_by_usability+self.rate_by_content)/2
+        
+        return aver
 
     @classmethod
     def getinstance(cls,webapp_id):
@@ -130,3 +133,8 @@ class comment(models.Model):
     def get_all(cls,webapp_id):
         comments=cls.objects.filter(webapp=webapp_id)
         return comments
+
+
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()

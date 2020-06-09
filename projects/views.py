@@ -1,10 +1,21 @@
 from django.shortcuts import render,redirect
-from .forms import profileform,webappsform,ratingsform,commentform
+from .forms import profileform,webappsform,ratingsform,commentform,NewsLetterForm
 from .models import Profile,webapps,ratings,comment
+from .email import send_welcome_email
 # Create your views here.
 def index(request):
     latestprojects=webapps.getlatest()
-    return render(request,'index.html',{'latestprojects':latestprojects})
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            recipient = NewsLetterRecipients(name = name,email =email)
+            recipient.save()
+            send_welcome_email(name,email)
+    else:
+        form = NewsLetterForm()
+    return render(request,'index.html',{'latestprojects':latestprojects,"letterForm":form})
 
 def site(request,webapp_id):
     currentuser=request.user
