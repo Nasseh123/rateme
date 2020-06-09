@@ -48,6 +48,7 @@ def site(request,webapp_id):
             if rat:
                 rating=form.save(commit=False)
                 rating.user_id=currentuser.id
+                rating.webapp_id=webapp_id
                 rating.save()
                 # avs=ratings.averageOfuser(userratedarray,webapp_id)
                 # average=ratings.objects.filter(webapp_id=webapp_id).update(average=avs)

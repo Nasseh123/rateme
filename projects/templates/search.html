@@ -31,7 +31,7 @@
                   <div class="card__title">{{allwebapp.title}}</div>
                   <p class="card__text">{{allwebapp.description}}</p>
 
-                  <p>AVERAGE RATINGS:{{allwebapp.ratings.avg}}</p>
+                
                   
                   <a href="{% url 'site' webapp_id=allwebapp.id %}" class="btn btn-info" role="button">Link Button</a>
                 </div>
@@ -43,5 +43,5 @@
     </div>
     {% endfor %}
 </div>
-
+{% include "footer.html" %}
 {% endblock %}

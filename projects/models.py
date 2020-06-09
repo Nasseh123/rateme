@@ -116,9 +116,11 @@ class ratings(models.Model):
             numsum=no.rate_by_design+no.rate_by_usability+no.rate_by_content+no.rate_by_creativity
             numsums.append(numsum)
         lengthofratings=len(userratedarray)*40
-        percentagevalue=((sum(numsums)*100))/lengthofratings
-                       
-        return percentagevalue
+        if lengthofratings:
+            percentagevalue=((sum(numsums)*100))/lengthofratings
+            return percentagevalue
+        else:
+            return numsums
     @ classmethod
     def average(cls,webapp_id):
         print(webapp_id)
