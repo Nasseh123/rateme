@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import profileform,webappsform,ratingsform,commentform,NewsLetterForm
-from .models import Profile,webapps,ratings,comment
+from .models import Profile,webapps,ratings,comment,NewsLetterRecipients
 from .email import send_welcome_email
 
 from rest_framework.response import Response
@@ -92,27 +92,29 @@ def profile(request,username):
     else:
         form = profileform()
     
-
-    return render(request, 'profile.html', {"form": form,'profile':profile})
+    projectsdone=webapps.objects.filter(user_id=user_id).all()
+    return render(request, 'profile.html', {"form": form,'profile':profile,'projectsdone':projectsdone})
 
 
 def search_all_projects(request):
 
-    current_user = request.user
-    user_id=current_user.id
+    
     # print(profile)
     allwebapps=webapps.get_all()
+    
+    return render(request,'search.html',{'allwebapps':allwebapps})
+def create_new_project(request):
+    current_user = request.user
+    user_id=current_user.id
     if request.method == 'POST':
         form = webappsform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-        return redirect('profile',username=user_id)
+        return redirect('search_all_projects')
 
     else:
-        form = profileform()
-
-    return render(request,'search.html',{"form": form,'allwebapps':allwebapps})
-
+        form = webappsform()
+    return render(request,'newproject.html',{"form": form})
 class ProfileList(APIView):
     def get(self, request, format=None):
         all_profile = Profile.objects.all()
